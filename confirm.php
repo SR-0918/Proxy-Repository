@@ -14,22 +14,25 @@
         $HPFfrequency =$_POST["HPF_value"];
         $LPFfrequency =$_POST["LPF_value"];
     }
-    //ここ要らないかも
-    if(ctype_digit($HPFfrequency)){
-        echo "HPFは数値で入力してください";
-    }else{
-        $HPFcalculate = 1.5708/(2*pi()*$HPFfrequency);
-    }
-
-    if(ctype_digit( $LPFfrequency)){
-        echo "LPFは数値で入力してください";
-    }else{
-        $LPFcalculate = 1/(2.256*$LPFfrequency);
-    }
+    
 
     ?>
-    <p>ハイパスフィルタ計算結果:<?php echo @$HPFcalculate; ?></p>
-    <p>ローパスフィルタ計算結果:<?php echo @$LPFcalculate; ?></p>
+    <p>ハイパスフィルタ計算結果:<?php 
+    if($HPFfrequency == 0){
+        echo "数値を入力してください";
+    }else{
+        $HPFcalculate = 1.5708/(2*pi()*$HPFfrequency);
+        echo @$HPFcalculate;
+    }
+     ?></p>
+    <p>ローパスフィルタ計算結果:<?php 
+        if($LPFfrequency == 0){
+            echo "数値を入力してください";
+        }else{
+            $LPFcalculate = 1/(2.256*$LPFfrequency);
+            echo @$LPFcalculate;
+        }
+     ?></p>
     </div>
     <input type="button" onclick = "history.back()" value = "戻る">
 </body>
